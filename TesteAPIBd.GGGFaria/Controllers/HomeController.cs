@@ -17,15 +17,15 @@ namespace TesteAPIBd.GGGFaria.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult CreatePost(int id)
+        [HttpGet]
+        public ActionResult GetPostById(int id)
         {
 
-            var post = _crudAPI.SelectAll<Post>($"posts/{id}");
+            var post = _crudAPI.Get<Post>($"posts/{id}");
             if(post == null)
                 return View("Index");
 
-            return View("Sucesso");
+            return Json(post, JsonRequestBehavior.AllowGet);
 
         }
 
